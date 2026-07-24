@@ -47,6 +47,16 @@
         >
           Galeria de Listas
         </v-btn>
+
+        <v-btn
+          to="/form"
+          variant="text"
+          rounded="pill"
+          prepend-icon="mdi-form-select"
+          active-class="text-primary font-weight-bold"
+        >
+          Formulário
+        </v-btn>
       </div>
 
       <v-spacer></v-spacer>
