@@ -1,5 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
+  future: {
+    compatibilityVersion: 4,
+  },
   compatibilityDate: '2025-01-01',
   devtools: { enabled: true },
   css: [
@@ -16,9 +19,9 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'Nuxt 3 + Vuetify 3 Counter App',
+      title: 'Nuxt 4 + Vuetify 3 App',
       meta: [
-        { name: 'description', content: 'Aplicação Nuxt 3 com Vuetify 3, alternador de tema e contador interativo.' }
+        { name: 'description', content: 'Aplicação Nuxt 4 com Vuetify 3, galeria de cards e galeria de listas.' }
       ],
       link: [
         { rel: 'preconnect', href: 'https://fonts.googleapis.com' },

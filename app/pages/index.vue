@@ -1,6 +1,6 @@
 <template>
   <v-container class="fill-height justify-center py-10">
-    <v-responsive max-width="520">
+    <v-responsive max-width="560">
       <!-- Counter Card -->
       <v-card
         elevation="8"
@@ -38,13 +38,14 @@
         </v-sheet>
 
         <!-- Action Controls -->
-        <div class="d-flex align-center justify-space-between ga-3">
+        <div class="d-flex align-center justify-center ga-2 ga-sm-3 flex-wrap">
           <v-btn
-            size="x-large"
+            size="large"
             color="error"
             variant="tonal"
             rounded="lg"
-            class="flex-grow-1 font-weight-bold action-btn"
+            class="flex-1-0 font-weight-bold action-btn"
+            style="min-width: 130px;"
             prepend-icon="mdi-minus"
             @click="decrement"
           >
@@ -52,20 +53,23 @@
           </v-btn>
 
           <v-btn
-            icon="mdi-refresh"
             size="large"
-            variant="outlined"
-            color="grey"
+            icon="mdi-refresh"
+            variant="tonal"
+            color="grey-darken-1"
             title="Reiniciar Contador"
+            aria-label="Reiniciar Contador"
+            class="flex-shrink-0"
             @click="reset"
           ></v-btn>
 
           <v-btn
-            size="x-large"
+            size="large"
             color="primary"
             variant="elevated"
             rounded="lg"
-            class="flex-grow-1 font-weight-bold action-btn"
+            class="flex-1-0 font-weight-bold action-btn"
+            style="min-width: 130px;"
             append-icon="mdi-plus"
             @click="increment"
           >

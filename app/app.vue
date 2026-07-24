@@ -13,7 +13,7 @@
       </template>
 
       <v-app-bar-title class="font-weight-bold tracking-tight">
-        Nuxt 3 <span class="text-primary">+ Vuetify 3</span>
+        Nuxt 4 <span class="text-primary">+ Vuetify 3</span>
       </v-app-bar-title>
 
       <!-- Navigation Links -->
@@ -36,6 +36,16 @@
           active-class="text-primary font-weight-bold"
         >
           Galeria de Cards
+        </v-btn>
+
+        <v-btn
+          to="/lists"
+          variant="text"
+          rounded="pill"
+          prepend-icon="mdi-format-list-bulleted-square"
+          active-class="text-primary font-weight-bold"
+        >
+          Galeria de Listas
         </v-btn>
       </div>
 
