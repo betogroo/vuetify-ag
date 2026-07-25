@@ -585,93 +585,9 @@
         </v-card>
       </v-col>
 
-      <!-- VARIAÇÃO 3: Material de Escritório - Circular Progress & Badges -->
+      <!-- VARIAÇÃO 3: Componente Reutilizável (<DemandCard />) -->
       <v-col cols="12" md="6" lg="4">
-        <v-card elevation="6" rounded="xl" class="h-100 card-hover border-warning d-flex flex-column justify-space-between pa-1">
-          <v-card-text>
-            <div class="d-flex align-center justify-space-between mb-4">
-              <div>
-                <v-chip color="warning" size="x-small" variant="tonal" class="font-weight-bold mb-1">DISPUTA</v-chip>
-                <h3 class="text-h6 font-weight-black mb-0">Material de Escritório</h3>
-                <span class="text-caption text-medium-emphasis">Data da Disputa: 16/08/2026</span>
-              </div>
-
-              <v-progress-circular
-                :model-value="44.4"
-                :size="58"
-                :width="6"
-                color="warning"
-                class="font-weight-bold text-caption"
-              >
-                4/9
-              </v-progress-circular>
-            </div>
-
-            <v-divider class="mb-3"></v-divider>
-
-            <div class="d-flex justify-space-around text-center py-2 bg-surface-variant rounded-lg">
-              <div>
-                <div class="text-caption text-medium-emphasis">Total</div>
-                <div class="text-subtitle-1 font-weight-black">9</div>
-              </div>
-              <v-divider vertical></v-divider>
-              <div>
-                <div class="text-caption text-medium-emphasis">Concluídos</div>
-                <div class="text-subtitle-1 font-weight-black text-success">4</div>
-              </div>
-              <v-divider vertical></v-divider>
-              <div>
-                <div class="text-caption text-medium-emphasis">Status</div>
-                <div class="text-caption font-weight-bold text-warning">Recursos</div>
-              </div>
-            </div>
-          </v-card-text>
-
-          <v-card-actions class="px-4 pb-4 pt-0 d-flex flex-column ga-2">
-            <div class="d-flex ga-2 w-100">
-              <v-btn
-                to="/form"
-                color="warning"
-                variant="elevated"
-                rounded="lg"
-                class="flex-grow-1 font-weight-bold"
-              >
-                Ir para os Detalhes
-              </v-btn>
-
-              <v-btn
-                icon="mdi-format-list-checks"
-                variant="tonal"
-                color="warning"
-                rounded="lg"
-                @click="expandedCard3 = !expandedCard3"
-                title="Expandir Lista de Produtos"
-              ></v-btn>
-            </div>
-
-            <v-expand-transition>
-              <div v-show="expandedCard3" class="w-100 mt-2">
-                <v-divider class="mb-2"></v-divider>
-                <div class="text-caption font-weight-bold mb-2">Lista de Produtos da Demanda:</div>
-                <v-list density="compact" class="bg-surface rounded-lg pa-0">
-                  <v-list-item
-                    v-for="item in demandProducts"
-                    :key="item.id"
-                    class="px-2 py-1"
-                  >
-                    <template #prepend>
-                      <v-icon :icon="item.status === 'Concluído' ? 'mdi-check' : 'mdi-circle-small'" :color="item.color" size="small"></v-icon>
-                    </template>
-                    <v-list-item-title class="text-caption">{{ item.name }}</v-list-item-title>
-                    <template #append>
-                      <span class="text-caption font-weight-bold" :class="`text-${item.color}`">{{ item.status }}</span>
-                    </template>
-                  </v-list-item>
-                </v-list>
-              </div>
-            </v-expand-transition>
-          </v-card-actions>
-        </v-card>
+        <DemandCard :demand="officeDemand" />
       </v-col>
 
     </v-row>
@@ -701,6 +617,17 @@ const demandProducts = [
   { id: 8, name: 'Tesouras de Aço Inox 21cm', status: 'Pendente', color: 'grey' },
   { id: 9, name: 'Organizadores de Mesa em Acrílico', status: 'Pendente', color: 'grey' },
 ]
+
+const officeDemand = ref({
+  title: 'Material de Escritório',
+  category: 'DISPUTA',
+  totalItems: 9,
+  completedItems: 4,
+  disputeDate: '16/08/2026',
+  status: 'Em fase de recursos',
+  detailsUrl: '/form',
+  items: demandProducts
+})
 
 const pricingFeatures = [
   'Projetos ilimitados',
