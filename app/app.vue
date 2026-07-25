@@ -13,7 +13,7 @@
       </template>
 
       <v-app-bar-title class="font-weight-bold tracking-tight">
-        Nuxt 4 <span class="text-primary">+ Vuetify 3</span>
+        Nuxt 4 <span class="text-primary">+ Vuetify 4</span>
       </v-app-bar-title>
 
       <!-- Navigation Links -->
@@ -91,7 +91,12 @@ const theme = useTheme()
 const isDark = computed(() => theme.global.name.value === 'dark')
 
 function toggleTheme() {
-  theme.global.name.value = isDark.value ? 'light' : 'dark'
+  const targetTheme = isDark.value ? 'light' : 'dark'
+  if (theme.change) {
+    theme.change(targetTheme)
+  } else {
+    theme.global.name.value = targetTheme
+  }
 }
 </script>
 
