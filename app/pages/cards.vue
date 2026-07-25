@@ -399,6 +399,281 @@
         </v-card>
       </v-col>
 
+      <!-- SEÇÃO ESPECIAL: 3 Variações da Demanda Material de Escritório -->
+      <v-col cols="12" class="mt-8 mb-2">
+        <v-divider class="mb-6"></v-divider>
+        <div class="text-center">
+          <v-chip color="warning" variant="tonal" size="large" class="font-weight-bold mb-2">
+            Demanda Específica
+          </v-chip>
+          <h2 class="text-h4 font-weight-black">
+            3 Variações do Card: Material de Escritório
+          </h2>
+          <p class="text-caption text-medium-emphasis">
+            Exemplos do mesmo conjunto de dados com layouts visuais distintos, progresso de itens (4 de 9 concluídos) e lista de produtos expansível.
+          </p>
+        </div>
+      </v-col>
+
+      <!-- VARIAÇÃO 1: Material de Escritório - Dashboard & Progresso -->
+      <v-col cols="12" md="6" lg="4">
+        <v-card elevation="6" rounded="xl" class="h-100 card-hover d-flex flex-column justify-space-between pa-1">
+          <v-card-text>
+            <div class="d-flex align-center justify-space-between mb-3">
+              <v-chip color="warning" size="small" variant="flat" prepend-icon="mdi-gavel" class="font-weight-bold">
+                Em fase de recursos
+              </v-chip>
+              <span class="text-caption text-medium-emphasis font-weight-semibold">
+                <v-icon icon="mdi-calendar" size="14" class="mr-1"></v-icon> 16/08/2026
+              </span>
+            </div>
+
+            <h3 class="text-h6 font-weight-bold mb-1">Material de Escritório</h3>
+            <p class="text-caption text-medium-emphasis mb-4">Demanda de Suprimentos & Papelaria</p>
+
+            <!-- Progresso de Itens -->
+            <div class="bg-surface-variant pa-4 rounded-lg mb-4">
+              <div class="d-flex justify-space-between text-caption font-weight-bold mb-1">
+                <span>Itens Concluídos</span>
+                <span class="text-primary font-weight-black">4 de 9 (44%)</span>
+              </div>
+              <v-progress-linear model-value="44.4" color="warning" height="8" rounded></v-progress-linear>
+            </div>
+
+            <div class="d-flex justify-space-between text-caption">
+              <div>
+                <span class="text-medium-emphasis">Total de Itens:</span> <strong>9</strong>
+              </div>
+              <div>
+                <span class="text-medium-emphasis">Concluídos:</span> <strong class="text-success">4</strong>
+              </div>
+            </div>
+          </v-card-text>
+
+          <!-- Botões de Ação -->
+          <v-card-actions class="px-4 pb-4 pt-0 d-flex flex-column ga-2">
+            <div class="d-flex ga-2 w-100">
+              <v-btn
+                to="/form"
+                color="primary"
+                variant="elevated"
+                rounded="lg"
+                class="flex-grow-1 font-weight-bold"
+                append-icon="mdi-arrow-right"
+              >
+                Ir para os Detalhes
+              </v-btn>
+
+              <v-btn
+                variant="tonal"
+                color="warning"
+                rounded="lg"
+                icon="mdi-chevron-down"
+                :class="{ 'rotate-180': expandedCard1 }"
+                @click="expandedCard1 = !expandedCard1"
+                title="Expandir produtos da demanda"
+              ></v-btn>
+            </div>
+
+            <!-- Lista Expansível de Produtos -->
+            <v-expand-transition>
+              <div v-show="expandedCard1" class="w-100 mt-2">
+                <v-divider class="mb-3"></v-divider>
+                <div class="text-caption font-weight-bold text-uppercase text-medium-emphasis mb-2">Produtos da Demanda (9)</div>
+                <v-list density="compact" class="bg-surface-variant rounded-lg py-1">
+                  <v-list-item
+                    v-for="item in demandProducts"
+                    :key="item.id"
+                    class="px-3"
+                  >
+                    <template #prepend>
+                      <v-icon
+                        :icon="item.status === 'Concluído' ? 'mdi-check-circle' : 'mdi-clock-outline'"
+                        :color="item.color"
+                        size="small"
+                        class="mr-2"
+                      ></v-icon>
+                    </template>
+                    <v-list-item-title class="text-caption font-weight-semibold">{{ item.name }}</v-list-item-title>
+                    <template #append>
+                      <v-chip :color="item.color" size="x-small" variant="flat">{{ item.status }}</v-chip>
+                    </template>
+                  </v-list-item>
+                </v-list>
+              </div>
+            </v-expand-transition>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+
+      <!-- VARIAÇÃO 2: Material de Escritório - Banner Gradiente & Timeline -->
+      <v-col cols="12" md="6" lg="4">
+        <v-card elevation="6" rounded="xl" class="h-100 card-hover overflow-hidden d-flex flex-column justify-space-between">
+          <div>
+            <div class="bg-gradient-primary pa-5 text-white position-relative">
+              <div class="d-flex justify-space-between align-center mb-2">
+                <v-avatar color="white" size="42" elevation="2">
+                  <v-icon icon="mdi-office-building-cog" color="primary"></v-icon>
+                </v-avatar>
+                <v-chip color="white" variant="flat" size="small" class="text-primary font-weight-bold">
+                  16/08/2026
+                </v-chip>
+              </div>
+              <h3 class="text-h6 font-weight-black text-white mb-0">Material de Escritório</h3>
+              <span class="text-caption text-white opacity-80">Status: Em fase de recursos</span>
+            </div>
+
+            <v-card-text class="pt-4">
+              <div class="d-flex align-center justify-space-between py-2 border-b">
+                <span class="text-body-2 text-medium-emphasis">Total de Itens</span>
+                <span class="text-subtitle-2 font-weight-black">9 itens</span>
+              </div>
+              <div class="d-flex align-center justify-space-between py-2 border-b">
+                <span class="text-body-2 text-medium-emphasis">Itens Concluídos</span>
+                <v-chip color="success" size="small" variant="tonal" class="font-weight-bold">4 de 9 (44%)</v-chip>
+              </div>
+              <div class="d-flex align-center justify-space-between py-2">
+                <span class="text-body-2 text-medium-emphasis">Fase Atual</span>
+                <v-chip color="warning" size="small" variant="flat" class="font-weight-bold">Em Recursos</v-chip>
+              </div>
+            </v-card-text>
+          </div>
+
+          <!-- Ações e Produtos -->
+          <v-card-actions class="px-4 pb-4 pt-0 d-flex flex-column ga-2">
+            <div class="d-flex ga-2 w-100">
+              <v-btn
+                to="/form"
+                color="primary"
+                variant="outlined"
+                rounded="lg"
+                class="flex-grow-1 font-weight-bold"
+                prepend-icon="mdi-open-in-new"
+              >
+                Ir para os Detalhes
+              </v-btn>
+
+              <v-btn
+                variant="tonal"
+                color="primary"
+                rounded="lg"
+                prepend-icon="mdi-format-list-bulleted"
+                @click="expandedCard2 = !expandedCard2"
+              >
+                Produtos (9)
+              </v-btn>
+            </div>
+
+            <v-expand-transition>
+              <div v-show="expandedCard2" class="w-100 mt-2">
+                <v-divider class="mb-2"></v-divider>
+                <v-list density="compact" class="bg-surface rounded-lg pa-0">
+                  <v-list-item
+                    v-for="item in demandProducts"
+                    :key="item.id"
+                    class="px-2 py-1 border-b-subtle"
+                  >
+                    <v-list-item-title class="text-caption font-weight-bold">{{ item.id }}. {{ item.name }}</v-list-item-title>
+                    <template #append>
+                      <v-chip :color="item.color" size="x-small" variant="tonal">{{ item.status }}</v-chip>
+                    </template>
+                  </v-list-item>
+                </v-list>
+              </div>
+            </v-expand-transition>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+
+      <!-- VARIAÇÃO 3: Material de Escritório - Circular Progress & Badges -->
+      <v-col cols="12" md="6" lg="4">
+        <v-card elevation="6" rounded="xl" class="h-100 card-hover border-warning d-flex flex-column justify-space-between pa-1">
+          <v-card-text>
+            <div class="d-flex align-center justify-space-between mb-4">
+              <div>
+                <v-chip color="warning" size="x-small" variant="tonal" class="font-weight-bold mb-1">DISPUTA</v-chip>
+                <h3 class="text-h6 font-weight-black mb-0">Material de Escritório</h3>
+                <span class="text-caption text-medium-emphasis">Data da Disputa: 16/08/2026</span>
+              </div>
+
+              <v-progress-circular
+                :model-value="44.4"
+                :size="58"
+                :width="6"
+                color="warning"
+                class="font-weight-bold text-caption"
+              >
+                4/9
+              </v-progress-circular>
+            </div>
+
+            <v-divider class="mb-3"></v-divider>
+
+            <div class="d-flex justify-space-around text-center py-2 bg-surface-variant rounded-lg">
+              <div>
+                <div class="text-caption text-medium-emphasis">Total</div>
+                <div class="text-subtitle-1 font-weight-black">9</div>
+              </div>
+              <v-divider vertical></v-divider>
+              <div>
+                <div class="text-caption text-medium-emphasis">Concluídos</div>
+                <div class="text-subtitle-1 font-weight-black text-success">4</div>
+              </div>
+              <v-divider vertical></v-divider>
+              <div>
+                <div class="text-caption text-medium-emphasis">Status</div>
+                <div class="text-caption font-weight-bold text-warning">Recursos</div>
+              </div>
+            </div>
+          </v-card-text>
+
+          <v-card-actions class="px-4 pb-4 pt-0 d-flex flex-column ga-2">
+            <div class="d-flex ga-2 w-100">
+              <v-btn
+                to="/form"
+                color="warning"
+                variant="elevated"
+                rounded="lg"
+                class="flex-grow-1 font-weight-bold"
+              >
+                Ir para os Detalhes
+              </v-btn>
+
+              <v-btn
+                icon="mdi-format-list-checks"
+                variant="tonal"
+                color="warning"
+                rounded="lg"
+                @click="expandedCard3 = !expandedCard3"
+                title="Expandir Lista de Produtos"
+              ></v-btn>
+            </div>
+
+            <v-expand-transition>
+              <div v-show="expandedCard3" class="w-100 mt-2">
+                <v-divider class="mb-2"></v-divider>
+                <div class="text-caption font-weight-bold mb-2">Lista de Produtos da Demanda:</div>
+                <v-list density="compact" class="bg-surface rounded-lg pa-0">
+                  <v-list-item
+                    v-for="item in demandProducts"
+                    :key="item.id"
+                    class="px-2 py-1"
+                  >
+                    <template #prepend>
+                      <v-icon :icon="item.status === 'Concluído' ? 'mdi-check' : 'mdi-circle-small'" :color="item.color" size="small"></v-icon>
+                    </template>
+                    <v-list-item-title class="text-caption">{{ item.name }}</v-list-item-title>
+                    <template #append>
+                      <span class="text-caption font-weight-bold" :class="`text-${item.color}`">{{ item.status }}</span>
+                    </template>
+                  </v-list-item>
+                </v-list>
+              </div>
+            </v-expand-transition>
+          </v-card-actions>
+        </v-card>
+      </v-col>
+
     </v-row>
   </v-container>
 </template>
@@ -410,6 +685,22 @@ const isFollowing = ref(false)
 const productRating = ref(4.9)
 const audioProgress = ref(40)
 const isPlaying = ref(false)
+
+const expandedCard1 = ref(false)
+const expandedCard2 = ref(false)
+const expandedCard3 = ref(false)
+
+const demandProducts = [
+  { id: 1, name: 'Papel A4 Reciclado (500 folhas)', status: 'Concluído', color: 'success' },
+  { id: 2, name: 'Canetas Esferográficas Azuis (Caixa c/ 50)', status: 'Concluído', color: 'success' },
+  { id: 3, name: 'Blocos de Notas Adesivas Amarelas', status: 'Concluído', color: 'success' },
+  { id: 4, name: 'Grampeadores de Mesa 26/6', status: 'Concluído', color: 'success' },
+  { id: 5, name: 'Pastas Suspensas Plásticas (Pacote c/ 25)', status: 'Em fase de recurso', color: 'warning' },
+  { id: 6, name: 'Envelopes Ofício Pardo (Caixa c/ 100)', status: 'Em análise', color: 'info' },
+  { id: 7, name: 'Marcadores de Texto Fluorescentes', status: 'Em fase de recurso', color: 'warning' },
+  { id: 8, name: 'Tesouras de Aço Inox 21cm', status: 'Pendente', color: 'grey' },
+  { id: 9, name: 'Organizadores de Mesa em Acrílico', status: 'Pendente', color: 'grey' },
+]
 
 const pricingFeatures = [
   'Projetos ilimitados',
@@ -485,5 +776,14 @@ const tasks = ref([
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+
+.border-b-subtle {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 </style>
